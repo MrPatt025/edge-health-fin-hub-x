@@ -1,0 +1,24 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    networks:
+      - ehfhx-network
+    ports:
+      - "8000:8000"
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    networks:
+      - ehfhx-network
+    ports:
+      - "3000:3000"
+    depends_on:
+      - api
+
+networks:
+  ehfhx-network:
+    external: true
